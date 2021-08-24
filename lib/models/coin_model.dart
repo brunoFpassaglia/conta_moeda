@@ -27,7 +27,7 @@ class CoinModel {
 
   factory CoinModel.fromMap(Map<String, dynamic> map) {
     return CoinModel(
-      dateTime: DateTime.fromMillisecondsSinceEpoch(map['Data']),
+      dateTime: DateTime.parse(map['Data']),
       quantity: map['Quantidade'],
       value: map['Valor'],
       name: map['Denominacao'],

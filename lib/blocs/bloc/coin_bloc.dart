@@ -19,11 +19,11 @@ class CoinBloc extends Bloc<CoinEvent, CoinState> {
       yield CoinFetchLoading();
       try {
         var coins = await _repo.getCoins(params: {
-          'data eq':
-              '${event.date.year.toString()}-${event.date.month.toString()}-${event.date.day.toString()}',
+          "\$top": '14',
+          r"$filter": "Data eq ${event.date.toString().substring(0, 10)}",
         });
         yield CoinFetchSuccess(coins: coins);
-      } on Exception {
+      } catch (e) {
         yield CoinFetchFailure();
       }
     }
